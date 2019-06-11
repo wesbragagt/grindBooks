@@ -7,6 +7,7 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import Jumbotron from "../components/Jumbotron";
 import { Input, FormBtn } from "../components/Form";
+import BookInfo from "../components/BookInfo";
 export class Books extends Component {
     state = {
         result: [],
@@ -16,7 +17,7 @@ export class Books extends Component {
     searchBook = query => {
         googleBooksAPI
             .search(query)
-            .then(res => this.setState({ result: res.data }))
+            .then(res => this.setState({ result: res.data.items }))
             .catch(err => console.log(err));
     };
 
@@ -54,7 +55,9 @@ export class Books extends Component {
                         </form>
                     </Col>
                     <Col size="md-6">
-                        <h3>No results found:</h3>
+                        {this.state.result.map(book => (
+                            <BookInfo title={book.volumeInfo.title} author={book.volumeInfo.authors} src={book.volumeInfo.imageLinks.thumbnail} />
+                        ))}
                     </Col>
                 </Row>
             </Container>
