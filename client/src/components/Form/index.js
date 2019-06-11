@@ -11,7 +11,7 @@ export function Input(props) {
                 value={props.value}
                 name="search"
                 type="text"
-                placeholder="Search For a Movie"
+                placeholder="Search For a book"
                 id="search"
             />
         </div>

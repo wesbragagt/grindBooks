@@ -42,7 +42,7 @@ export class Books extends Component {
                             <h1>Search and save your favorite books</h1>
                         </Jumbotron>
                     </Col>
-                    <Col size="md-6">
+                    <Col size="sm-6 md-12">
                         <form>
                             <Input
                                 name="search"
@@ -54,9 +54,15 @@ export class Books extends Component {
                             </FormBtn>
                         </form>
                     </Col>
-                    <Col size="md-6">
+                    <Col size="sm-6 md-12">
                         {this.state.result.map(book => (
-                            <BookInfo title={book.volumeInfo.title} author={book.volumeInfo.authors} src={book.volumeInfo.imageLinks.thumbnail} />
+                            <BookInfo
+                                title={book.volumeInfo.title}
+                                author={book.volumeInfo.authors}
+                                src={book.volumeInfo.imageLinks.thumbnail}
+                            >
+                                {book.volumeInfo.description}
+                            </BookInfo>
                         ))}
                     </Col>
                 </Row>
