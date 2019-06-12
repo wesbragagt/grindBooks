@@ -1,19 +1,23 @@
 import React from "react";
 import AddBtn from "../AddBtn";
 import DeleteBtn from "../DeleteBtn";
+
 function BookInfo(props) {
+    console.log(props);
     return (
-        <div className="card mt-2 mb-2 p-5">
-            <div class="col-md-4 inline-block">
-                <img
-                    alt={props.title}
-                    className="img-fluid float-left m-1"
-                    src={props.src}
-                />
-                <h5 className="float-left">Title: {props.title}</h5>
-                <h5 className="float-left">Author: {props.author}</h5>
+        
+        <div  className="card mt-4 mb-4 book-card">
+            <button {...props} onClick={props.onClick} className="add-button btn btn-success">Add</button>
+            <img
+                alt={props.title}
+                className="card-img-top img-fluid p-3"
+                src={props.src}
+            />
+            <div className="card-body d-inline">
+                <h5 className="card-title">Title: {props.title}</h5>
+                <p className="card-title">Author: {props.author}</p>
+                <p className="card-text">{props.description}</p>
             </div>
-            <span className="float-left">{props.children}</span>
         </div>
     );
 }

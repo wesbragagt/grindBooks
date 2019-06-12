@@ -1,0 +1,9 @@
+.book-card img  {
+width: 185px;
+margin-left: 12px;
+}
+
+.add-button {
+    width: 6rem;
+    margin-left: auto;
+}

@@ -23,7 +23,7 @@ export function FormBtn(props) {
         <button
             onClick={props.handleFormSubmit}
             style={{ float: "right", marginBottom: 10 }}
-            className="btn btn-success"
+            className="m-auto btn btn-success"
         >
             {props.children}
         </button>

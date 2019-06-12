@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import googleBooksAPI from "../utils/googleBooksAPI";
 // Components
-import DeleteBtn from "../components/DeleteBtn";
-import AddBtn from "../components/AddBtn";
+// import DeleteBtn from "../components/DeleteBtn";
+// import AddBtn from "../components/AddBtn";
 import { Col, Row, Container } from "../components/Grid";
-import { List, ListItem } from "../components/List";
 import Jumbotron from "../components/Jumbotron";
 import { Input, FormBtn } from "../components/Form";
 import BookInfo from "../components/BookInfo";
+
+import "./style.css";
 export class Books extends Component {
     state = {
         result: [],
@@ -33,6 +34,18 @@ export class Books extends Component {
         this.searchBook(this.state.search);
     };
 
+    handleAddBook = event => {
+        event.preventDefault();
+        const { id, title, authors, description } = event.target;
+        console.log(event.target);
+        googleBooksAPI.saveBook({
+            id,
+            title,
+            authors,
+            description
+        });
+    };
+
     render() {
         return (
             <Container fluid>
@@ -42,7 +55,7 @@ export class Books extends Component {
                             <h1>Search and save your favorite books</h1>
                         </Jumbotron>
                     </Col>
-                    <Col size="sm-6 md-12">
+                    <Col size="md-12">
                         <form>
                             <Input
                                 name="search"
@@ -54,17 +67,32 @@ export class Books extends Component {
                             </FormBtn>
                         </form>
                     </Col>
-                    <Col size="sm-6 md-12">
-                        {this.state.result.map(book => (
-                            <BookInfo
-                                title={book.volumeInfo.title}
-                                author={book.volumeInfo.authors}
-                                src={book.volumeInfo.imageLinks.thumbnail}
-                            >
-                                {book.volumeInfo.description}
-                            </BookInfo>
-                        ))}
-                    </Col>
+
+                    <Container>
+                        <Row>
+                            {this.state.result.map(book => {
+                                const { id } = book;
+                                const {
+                                    title,
+                                    authors,
+                                    imageLinks,
+                                    description
+                                } = book.volumeInfo;
+                                return (
+                                    <BookInfo
+                                        id={id}
+                                        key={id}
+                                        title={title}
+                                        author={authors}
+                                        src={imageLinks.thumbnail}
+                                        description={description}
+                                        onClick={this.handleAddBook}
+                                        bookInfo={book}
+                                    />
+                                );
+                            })}
+                        </Row>
+                    </Container>
                 </Row>
             </Container>
         );
