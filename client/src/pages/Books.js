@@ -34,15 +34,14 @@ export class Books extends Component {
         this.searchBook(this.state.search);
     };
 
-    handleAddBook = event => {
-        event.preventDefault();
-        const { id, title, authors, description } = event.target;
-        console.log(event.target);
+    handleAddBook = props => {
+        const { authors, description, image, link, title } = props;
         googleBooksAPI.saveBook({
-            id,
-            title,
             authors,
-            description
+            description,
+            image,
+            link,
+            title
         });
     };
 
@@ -71,7 +70,7 @@ export class Books extends Component {
                     <Container>
                         <Row>
                             {this.state.result.map(book => {
-                                const { id } = book;
+                                const { id, selfLink } = book;
                                 const {
                                     title,
                                     authors,
@@ -80,14 +79,18 @@ export class Books extends Component {
                                 } = book.volumeInfo;
                                 return (
                                     <BookInfo
+                                        authors={authors}
+                                        description={description}
+                                        image={imageLinks.thumbnail}
+                                        link={selfLink}
+                                        title={title}
                                         id={id}
                                         key={id}
-                                        title={title}
-                                        author={authors}
-                                        src={imageLinks.thumbnail}
-                                        description={description}
-                                        onClick={this.handleAddBook}
-                                        bookInfo={book}
+                                        handleAddBook={e => {
+                                            e.preventDefault();
+                                            this.handleAddBook({
+                                            title, authors: authors[0], image: imageLinks.thumbnail, description
+                                        })}}
                                     />
                                 );
                             })}
