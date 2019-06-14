@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 import googleBooksAPI from "../utils/googleBooksAPI";
-// Components
-// import DeleteBtn from "../components/DeleteBtn";
-// import AddBtn from "../components/AddBtn";
 import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
 import { Input, FormBtn } from "../components/Form";
@@ -89,8 +86,12 @@ export class Books extends Component {
                                         handleAddBook={e => {
                                             e.preventDefault();
                                             this.handleAddBook({
-                                            title, authors: authors[0], image: imageLinks.thumbnail, description
-                                        })}}
+                                                title,
+                                                authors: authors[0],
+                                                image: imageLinks.thumbnail,
+                                                description
+                                            });
+                                        }}
                                     />
                                 );
                             })}
