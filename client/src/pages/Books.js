@@ -9,7 +9,8 @@ import "./style.css";
 export class Books extends Component {
     state = {
         result: [],
-        search: ""
+        search: "",
+        checked: false
     };
 
     searchBook = query => {
@@ -39,8 +40,19 @@ export class Books extends Component {
             image,
             link,
             title
-        });
+        }).then(this.toggleCheck);
     };
+
+    toggleCheck = () => {
+        this.setState({
+            checked: true
+        })
+        setTimeout(() => {
+            this.setState({
+                checked: false
+            })
+        }, 200);
+    }
 
     render() {
         return (
@@ -83,8 +95,11 @@ export class Books extends Component {
                                         title={title}
                                         id={id}
                                         key={id}
-                                        handleAddBook={e => {
+                                        buttonType="btn btn-sm btn-success button-style"
+                                        buttonName={this.state.checked ? "Added" : "Add"}
+                                        handleClick={e => {
                                             e.preventDefault();
+
                                             this.handleAddBook({
                                                 title,
                                                 authors: authors[0],

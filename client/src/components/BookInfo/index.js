@@ -1,14 +1,13 @@
 import React from "react";
-
 function BookInfo(props) {
     console.log(props);
     return (
         <div className="card mt-4 mb-4 book-card">
             <button
-                onClick={props.handleAddBook}
-                className="add-button btn btn-success"
+                onClick={props.handleClick}
+                className={props.buttonType}
             >
-                Add
+                {props.buttonName}
             </button>
             <img
                 alt={props.title}
