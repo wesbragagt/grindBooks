@@ -1,29 +1,11 @@
-# Create React Express App
+# grindBooks
 
-## About This Boilerplate
+## CRUD React app
 
-This setup allows for a Node/Express/React app which can be easily deployed to Heroku.
+This application is a full stack web app that allows you to search for books using the google books api and save them to a mongoDB database.
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
-
-## Starting the app locally
-
-Start by installing front and backend dependencies. While in this directory, run the following command:
-
-```
-npm install
-```
-
-This should install node modules within the server and the client folder.
-
-After both installations complete, run the following command in your terminal:
-
-```
-npm start
-```
-
-Your app should now be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
+The front-end is built on React, using presentational and container components along with React Router for handling route end points.
 
 ## Deployment (Heroku)
 
-To deploy, simply add and commit your changes, and push to Heroku. As is, the NPM scripts should take care of the rest.
+Deployed on heroku using a continuous integration through this github repo, feel free to make  a PR and take your own spin with this application.
